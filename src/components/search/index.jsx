@@ -2,7 +2,7 @@ import { Button, Input } from "@material-tailwind/react";
 import React, { useState } from "react";
 
 const Search = () => {
-  const [active, setActive] = useState("номер");
+  const [active, setActive] = useState("марку");
   return (
     <section>
       <div className="container">
