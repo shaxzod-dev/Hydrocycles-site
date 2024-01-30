@@ -1,11 +1,13 @@
 import React from "react";
-import { Header } from "../../components";
+import { Banner, Header, Search } from "../../components";
 
 const Home = () => {
   return (
-    <div className="container">
+    <>
       <Header />
-    </div>
+      <Banner />
+      <Search />
+    </>
   );
 };
 
