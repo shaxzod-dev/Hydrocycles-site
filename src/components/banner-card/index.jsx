@@ -19,14 +19,16 @@ const BannerCard = () => {
         alt="Addvertisement"
         className="absolute top-[67px] left-[61px]"
       />
-      <h2 className="text-title-color text-xl font-bold text-center top-[240px] left-5 absolute w-[233px] ">
+      <h2 className=" text-title-color text-xl font-bold text-center top-[240px]  absolute w-[233px] ">
         Лодочный мотор Suzuki DF9.9BRS
       </h2>
       <div className="flex items-center justify-center flex-col bg-title-gray w-full h-[99px] absolute bottom-0">
         <h3 className="w-full text-center text-xl font-normal">
           Акция действует до
         </h3>
-        <h3 className="text-primary-color text-center text-lg font-bold">31.08.2020</h3>
+        <h3 className="text-primary-color text-center text-lg font-bold">
+          31.08.2020
+        </h3>
       </div>
     </div>
   );

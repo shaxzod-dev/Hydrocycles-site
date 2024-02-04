@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home, Info, Products } from "./pages";
+import "react-loading-skeleton/dist/skeleton.css"; 
 import "./App.css";
 
 function App() {

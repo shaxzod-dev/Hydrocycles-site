@@ -1,19 +1,10 @@
 import { Carousel } from "@material-tailwind/react";
 import React from "react";
 import BannerCard from "../banner-card";
+import { carouseImages } from "../../constant";
 
 const Banner = () => {
-  const carouseImages = [
-    {
-      img: "https://drivemoto.vercel.app/img/banner-slider.jpg",
-    },
-    {
-      img: "https://p0.pikist.com/photos/229/478/jet-ski-sport-speed-water-spray-sea-activity-extreme-splash.jpg",
-    },
-    {
-      img: "https://poseidon123.com/wp-content/uploads/2019/11/777.jpeg",
-    },
-  ];
+  
   return (
     <section className="my-20">
       <div className="container">
