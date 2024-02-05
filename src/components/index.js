@@ -8,3 +8,4 @@ export { default as Products } from "./products";
 export { default as ProductAdd } from "./product-add";
 export { default as Electronics } from "./electronics";
 export { default as Footer } from "./footer";
+export { default as Breadcrumb } from "./breadcrumb";

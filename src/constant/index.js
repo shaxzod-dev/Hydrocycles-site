@@ -50,3 +50,46 @@ export const categoryData = [
     img: img6,
   },
 ];
+
+export const NavData = [
+  {
+    id: 0,
+    text: "Квадроциклы",
+    link: "/products/quad-bikes",
+  },
+  {
+    id: 1,
+    text: "Катера",
+    link: "/products/boats",
+  },
+  {
+    id: 2,
+    text: "Гидроциклы",
+    link: "/products/hydro-cycles",
+  },
+  {
+    id: 3,
+    text: "Лодки",
+    link: "/products/boats",
+  },
+  {
+    id: 4,
+    text: "Вездеходы",
+    link: "/products/off-roaders",
+  },
+  {
+    id: 5,
+    text: "Снегоходы",
+    link: "/products/snow-mobiles",
+  },
+  {
+    id: 6,
+    text: "Двигатели",
+    link: "/products/engines",
+  },
+  {
+    id: 7,
+    text: "Запчасти",
+    link: "/products/engines",
+  },
+];
