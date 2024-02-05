@@ -1,5 +1,14 @@
 import React from "react";
-import { Banner, Category, Header, Products, Search } from "../../components";
+import {
+  Banner,
+  Category,
+  Electronics,
+  Footer,
+  Header,
+  ProductAdd,
+  Products,
+  Search,
+} from "../../components";
 
 const Home = () => {
   return (
@@ -9,6 +18,9 @@ const Home = () => {
       <Search />
       <Category />
       <Products />
+      <ProductAdd />
+      <Electronics />
+      <Footer />
     </>
   );
 };

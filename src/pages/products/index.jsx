@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Footer, Header } from "../../components";
 
 const Products = () => {
   return (
-    <div>Products</div>
-  )
-}
+    <>
+      <Header />
+    </>
+  );
+};
 
-export default Products
+export default Products;

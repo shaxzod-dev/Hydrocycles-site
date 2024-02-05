@@ -5,3 +5,6 @@ export { default as Search } from "./search";
 export { default as Category } from "./category";
 export { default as Title } from "./title";
 export { default as Products } from "./products";
+export { default as ProductAdd } from "./product-add";
+export { default as Electronics } from "./electronics";
+export { default as Footer } from "./footer";
