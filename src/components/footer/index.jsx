@@ -3,7 +3,7 @@ import { Icons } from "../../assets/icons";
 
 const Footer = () => {
   return (
-    <footer className=" bg-title-gray pt-[41px] pb-7">
+    <footer className=" bg-title-gray pt-[41px] pb-7 mt-[97px]">
       <div className="container">
         <div className="flex gap-x-[160px]">
           <div className="flex flex-col gap-y-9">

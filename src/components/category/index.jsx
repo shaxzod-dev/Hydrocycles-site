@@ -7,14 +7,13 @@ const Category = () => {
   const [data, setData] = useState([]);
   const [api, setApi] = useState("products");
   async function getData() {
-    return await fetch("https://65bf8bd025a83926ab952f8d.mockapi.io/products")
+    return await fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then((res) => res.json())
       .then((json) => setData(json));
   }
   useEffect(() => {
     getData();
   }, []);
-  console.log(data);
   return (
     <section className="mt-20 mb-20">
       <div className="container">

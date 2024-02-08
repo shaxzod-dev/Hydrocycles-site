@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Header, InfoCard } from "../../components";
 
 const Info = () => {
   return (
-    <div>Info</div>
-  )
-}
+    <>
+      <Header />
+      <InfoCard />
+    </>
+  );
+};
 
-export default Info
+export default Info;
