@@ -38,14 +38,17 @@ export const Icons = {
   likeIcon: (props) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={24}
-      height={22}
-      fill="none"
+      width={25}
+      height={23}
+      fill={props.color ? "red" : "none"}
       {...props}
     >
       <path
-        fill="#2F3035"
-        d="M12 8.229c.234-1.12 1.547-6.23 5.382-6.23C19.602 2 22 3.552 22 7.004c0 3.907-3.627 8.47-10 12.629-6.373-4.16-10-8.722-10-12.63C2 3.52 4.369 1.999 6.577 1.999c3.923 0 5.145 5.126 5.423 6.23ZM0 7.003C0 11.07 3.06 16.483 12 22c8.94-5.516 12-10.93 12-14.997 0-7.962-9.648-9.028-12-3.737C9.662-1.996 0-1.004 0 7.003Z"
+        stroke={props.color ? "red" : "#454F5B"}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M6.75 1C3.575 1 1 3.61 1 6.829c0 2.599 1.006 8.767 10.911 15.002a1.113 1.113 0 0 0 1.178 0C22.994 15.596 24 9.428 24 6.829 24 3.609 21.425 1 18.25 1S12.5 4.533 12.5 4.533 9.925 1 6.75 1Z"
       />
     </svg>
   ),
@@ -177,6 +180,23 @@ export const Icons = {
       <path
         fill="#1C62CD"
         d="M5.026 17.997H2.3V7.547h2.727v10.45Zm-1.97-.741H4.27V8.288H3.056v8.968Z"
+      />
+    </svg>
+  ),
+  CloseIcon: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18 18 6M6 6l12 12"
       />
     </svg>
   ),

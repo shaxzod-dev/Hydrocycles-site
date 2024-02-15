@@ -2,14 +2,19 @@ import React, { useContext } from "react";
 import { Icons } from "../../assets/icons";
 import { Link } from "react-router-dom";
 import { MainContext } from "../../context/useMainContext";
-import { data } from "autoprefixer";
-const ProductCard = ({ img, price, sale, res, link, data, card }) => {
-  const { addToCard, removeFromCard } = useContext(MainContext);
-console.log(card);
+const ProductCard = ({ img, price, sale, res, link, data, card, like }) => {
+  const { addToCard, removeFromCard, addToLike, removeFromLike } =
+    useContext(MainContext);
+  // console.log(like);
   return (
     <div className="group hover:cursor-pointer hover:shadow-[3px_3px_20px_0px_rgba(50,50,50,0.25)]  px-9 rounded-[3px] w-[270px] h-full transition-all border-[3px] border-title-gray flex items-center justify-center flex-col relative">
       {sale}
-      <Icons.likeIcon className="absolute top-4 right-5 hover:cursor-pointer" />
+      <button
+        onClick={() => (like ? removeFromLike(data.id) : addToLike(data))}
+        className="absolute top-4 right-5 hover:cursor-pointer"
+      >
+        <Icons.likeIcon color={like && "red"} />
+      </button>
       <div className=" p-2 box-content">
         <Link to={`/info/${data?.id}`}>
           <img src={img} alt={data?.title} />
@@ -35,9 +40,13 @@ console.log(card);
         onClick={() => {
           card ? removeFromCard(data?.id) : addToCard(data);
         }}
-        className="border-none absolute bottom-0 right-0 bg-primary-color w-[60px] h-10 flex items-center justify-center rounded-tl-[10px]"
+        className={
+          card == true
+            ? "bg-primary-color  absolute right-0 bottom-0  border-2   w-[60px] h-10 flex items-center  justify-center rounded-tl-[10px]"
+            : "border-primary-color  border-2 bg-white absolute bottom-0 right-0  w-[60px] h-10 flex items-center justify-center rounded-tl-[10px]"
+        }
       >
-        <Icons.shopIcon color="light" />
+        <Icons.shopIcon color={card ? "light" : "2F3035"} />
       </button>
     </div>
   );

@@ -15,7 +15,8 @@
     "react-dom": "^18.2.0",
     "react-loading-skeleton": "^3.4.0",
     "react-router-dom": "^6.21.3",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "yarn": "^1.22.21"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

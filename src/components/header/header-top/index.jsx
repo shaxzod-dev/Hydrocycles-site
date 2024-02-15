@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Icons } from "../../../assets/icons";
 import { Link } from "react-router-dom";
 import { LikeModal, PersonModal, ShopModal } from "../../dialog";
+import { MainContext } from "../../../context/useMainContext";
+import { Badge } from "@material-tailwind/react";
 
 const HeaderTop = () => {
   const [likeModal, setLikeModal] = useState(false),
     [personModal, setPersonModal] = useState(false),
     [shopModal, setShopModal] = useState(false);
+  const { likeItems, cardItems } = useContext(MainContext);
+  console.log(cardItems.length, "my length");
   function handleLike() {
     setLikeModal(!likeModal);
   }
@@ -44,13 +48,25 @@ const HeaderTop = () => {
         </div>
         <div className="flex items-center gap-x-3">
           <button onClick={() => handleLike()}>
-            <Icons.likeIcon />
+            {likeItems.length ? (
+              <Badge content={likeItems.length}>
+                <Icons.likeIcon />
+              </Badge>
+            ) : (
+              <Icons.likeIcon />
+            )}
           </button>
           <button onClick={() => handlePerson()}>
             <Icons.personIcon />
           </button>
           <button onClick={() => handleShop()}>
-            <Icons.shopIcon />
+            {cardItems.length ? (
+              <Badge content={cardItems.length}>
+                <Icons.shopIcon />
+              </Badge>
+            ) : (
+              <Icons.shopIcon />
+            )}
           </button>
         </div>
         <LikeModal open={likeModal} handleOpen={handleLike} />

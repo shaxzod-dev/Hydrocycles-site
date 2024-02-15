@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Button,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Rating,
 } from "@material-tailwind/react";
+import { MainContext } from "../../../context/useMainContext";
+import LikedItems from "../../liked-items";
+import { Icons } from "../../../assets/icons";
 function LikeModal({ open, handleOpen }) {
+  const { likeItems, cardItems } = useContext(MainContext);
   return (
     <>
-      <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>Like</DialogHeader>
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        className="h-[600px] overflow-y-auto "
+      >
+        <DialogHeader className="flex items-center justify-between">
+          <p>{likeItems.length ? "Like Modal" : "Like Modal is empty"}</p>
+          <button onClick={handleOpen}>
+            <Icons.CloseIcon />
+          </button>
+        </DialogHeader>
         <DialogBody>
-          The key to more success is to have a lot of pillows. Put it this way,
-          it took me twenty five years to get these plants, twenty five years of
-          blood sweat and tears, and I&apos;m never giving up, I&apos;m just
-          getting started. I&apos;m up to something. Fan luv.
+          {likeItems.length ? (
+            <div className="flex flex-col gap-y-4">
+              {likeItems.map((el) => (
+                <LikedItems
+                  data={el}
+                  key={el.id}
+                  card={cardItems.some((item) => item.id == el.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <h2>Like box is empty</h2>
+          )}
         </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
+        <DialogFooter></DialogFooter>
       </Dialog>
     </>
   );

@@ -18,14 +18,25 @@ export function useReduce(state, action) {
         ],
       };
     case REMOVE_FROM_CARD:
-      console.log(action.payload);
-      break;
+      return {
+        ...state,
+        cardItems: state.cardItems.filter((el) => el.id !== action.payload),
+      };
     case ADD_TO_LIKE:
-      console.log(action.payload);
-      break;
+      return {
+        ...state,
+        likeItems: [
+          ...state.likeItems,
+          {
+            ...action.payload,
+          },
+        ],
+      };
     case REMOVE_FROM_LIKE:
-      console.log(action.payload);
-      break;
+      return {
+        ...state,
+        likeItems: state.likeItems.filter((el) => el.id !== action.payload),
+      };
     default:
       console.log("default");
   }
