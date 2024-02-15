@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import {
-  Button,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
-  Rating,
 } from "@material-tailwind/react";
 import { MainContext } from "../../../context/useMainContext";
 import LikedItems from "../../liked-items";
