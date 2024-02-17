@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { categoryData } from "../../constant";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import CategoryCard from "../category-card";
 
 const Category = () => {
   const [data, setData] = useState([]);
-  const [api, setApi] = useState("products");
   async function getData() {
     return await fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then((res) => res.json())
@@ -16,7 +14,7 @@ const Category = () => {
     getData();
   }, []);
   return (
-    <section className="mt-20 mb-20">
+    <section id="category" className="mt-20 mb-20">
       <div className="container">
         <div className="relative flex items-center justify-between flex-wrap gap-7">
           {data.length

@@ -9,12 +9,7 @@ import img1 from "../../assets/images/product-1.png";
 import img2 from "../../assets/images/product-2.png";
 import img3 from "../../assets/images/product-3.png";
 import img4 from "../../assets/images/product-4.png";
-import { Icons } from "../../assets/icons";
-import { Link } from "react-router-dom";
-import { UnderlineTabs } from "../tabs";
-import { MainContext } from "../../context/useMainContext";
 const Products = () => {
-  const {addToCard} = useContext(MainContext)
   return (
     <section className="mb-20">
       <div className="container">
@@ -33,7 +28,6 @@ const Products = () => {
               img={img1}
               price={"9 800 ₽"}
               title={"Водонепроницаемый Рюкзак"}
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
@@ -46,7 +40,6 @@ const Products = () => {
                   SALE
                 </button>
               }
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
@@ -54,7 +47,6 @@ const Products = () => {
               img={img3}
               price={"68 000 ₽"}
               title={"BRP Audio-Premium System"}
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
@@ -75,7 +67,6 @@ const Products = () => {
               img={img1}
               price={"9 800 ₽"}
               title={"Водонепроницаемый Рюкзак"}
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
@@ -88,7 +79,6 @@ const Products = () => {
                   SALE
                 </button>
               }
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
@@ -96,7 +86,6 @@ const Products = () => {
               img={img3}
               price={"68 000 ₽"}
               title={"BRP Audio-Premium System"}
-              
             />
           </SwiperSlide>
           <SwiperSlide className="w-[271px] ">
