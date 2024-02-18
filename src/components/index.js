@@ -12,3 +12,4 @@ export { default as Breadcrumb } from "./breadcrumb";
 export { default as InfoCard } from "./info-card";
 export { default as CategoryCard } from "./category-card";
 export { default as LikedItems } from "./liked-items";
+export { default as AddedProducts } from "./added-products";

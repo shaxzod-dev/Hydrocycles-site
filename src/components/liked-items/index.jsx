@@ -19,7 +19,7 @@ const LikedItems = ({ data, card }) => {
         </div>
         <div className="flex gap-x-3 mt-4">
           <span className="block text-title-color text-lg font-bold">
-            {data.price}
+            От:{data.price}
           </span>
           <span className="block line-through text-gray-500">{data.price}</span>
         </div>
