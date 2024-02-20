@@ -11,7 +11,11 @@ import { MainContext } from "../../../context/useMainContext";
 import AddedProducts from "../../added-products";
 function ShopModal({ open, handleOpen }) {
   const { cardItems } = useContext(MainContext);
-
+  let a = 0;
+  for (const key of cardItems) {
+    a += key.price * key.quantity;
+  }
+  console.log(a.toLocaleString());
   return (
     <>
       <Dialog
@@ -37,7 +41,9 @@ function ShopModal({ open, handleOpen }) {
             <div className="gap-y-2">
               <h3 className="text-sm text-title-color font-normal leading-[26px] ">
                 Итого:
-                <span className="text-xl font-bold leading-[30px] text-title-color"></span>
+                <span className="text-xl font-bold leading-[30px] text-title-color">
+                  {a.toLocaleString()} ₽
+                </span>
               </h3>
               <Button
                 variant="filled"
