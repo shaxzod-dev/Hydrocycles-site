@@ -1,3 +1,4 @@
+import { z } from "zod";
 import img1 from "../assets/images/img-1.png";
 import img2 from "../assets/images/img-2.png";
 import img3 from "../assets/images/img-3.png";
@@ -103,24 +104,12 @@ export const data = [
     label: "Наличие в магазине",
     value: "Наличие в магазине",
   },
-  // {
-  //   label: "Vue",
-  //   value: "vue",
-  //   desc: `We're not always in the position that we want to be at.
-  //   We're constantly growing. We're constantly making mistakes. We're
-  //   constantly trying to express ourselves and actualize our dreams.`,
-  // },
-  // {
-  //   label: "Angular",
-  //   value: "angular",
-  //   desc: `Because it's about motivating the doers. Because I'm here
-  //   to follow my dreams and inspire other people to follow their dreams, too.`,
-  // },
-  // {
-  //   label: "Svelte",
-  //   value: "svelte",
-  //   desc: `We're not always in the position that we want to be at.
-  //   We're constantly growing. We're constantly making mistakes. We're
-  //   constantly trying to express ourselves and actualize our dreams.`,
-  // },
 ];
+
+export const FormData = z.object({
+  firstName: z.string().min(1).max(18),
+  lastName: z.string().min(1).max(18),
+  phone: z.string().min(10).max(14).optional(),
+  email: z.string().email(),
+  url: z.string().url().optional(),
+});

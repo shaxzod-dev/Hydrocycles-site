@@ -30,9 +30,9 @@ const HeaderTop = () => {
           <a href="#" className="text-title-color text-xl font-bold">
             Акции
           </a>
-          <a href="#" className="text-title-color text-xl font-bold">
+          <Link to={"/orders"} className="text-title-color text-xl font-bold">
             Доставка и оплата
-          </a>
+          </Link>
         </nav>
         <Link to={"/"}>
           <Icons.logoIcon />

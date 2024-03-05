@@ -38,7 +38,6 @@ function LikeModal({ open, handleOpen }) {
             <h2>Like box is empty</h2>
           )}
         </DialogBody>
-        <DialogFooter></DialogFooter>
       </Dialog>
     </>
   );

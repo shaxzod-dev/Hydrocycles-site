@@ -5,7 +5,7 @@ import { MainContext } from "../../context/useMainContext";
 const AddedProducts = ({ data }) => {
   const { removeOne, addOne, removeFromCard } = useContext(MainContext);
   return (
-    <div className="relative flex gap-x-4 bg-white p-1">
+    <div className="relative flex gap-x-4 bg-white p-2 mt-5">
       <div className="w-[120px] h-[100px]">
         <img
           className="w-full h-full object-contain"
