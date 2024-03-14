@@ -1,29 +1,48 @@
 import React, { useContext, useState } from "react";
-import { isValidName } from "../../utils";
 import { MainContext } from "../../context/useMainContext";
 import AddedProducts from "../added-products";
+import axios from "axios";
+import { useForm, Controller } from "react-hook-form";
+import { Spinner } from "@material-tailwind/react";
+import { Icons } from "../../assets/icons";
 
 const OrderForm = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const { cardItems } = useContext(MainContext);
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState({
+  const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState({
     name: "",
-    lastName: "",
-    email: "",
     phone: "",
+    phone: "",
+    email: "",
+    delivery: "",
+    payment: "",
+    message: "No Comments",
+    productsData: cardItems,
   });
-  console.log(isValidName(name));
-  function onSubmit(e) {
-    e.preventDefault();
-    if (!isValidName(name)) {
-      setError({ name: "Unacceptable name!!!" });
-    } else {
-      setError({
-        name: "",
-      });
+  async function onSubmit(data) {
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "https://65bf8bd025a83926ab952f8d.mockapi.io/Schema",
+        data
+      );
+      if (res.status == 201) {
+        alert("You have succesfully made an order");
+        localStorage.removeItem("cardItems");
+        window.location.href = "/";
+      }
+    } catch (error) {
+      alert("Unknown error occured");
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   }
   let a = 0;
@@ -33,9 +52,9 @@ const OrderForm = () => {
   return (
     <div className="container">
       <h2 className="text-[44px] mt-10">Оформление заказа</h2>
-      <div className="flex gap-8">
-        <div className="w-[696px] border-2 border-title-gray py-6 px-8">
-          <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex gap-8">
+          <div className="w-[696px] border-2 border-title-gray py-6 px-8">
             <h3 className="text-lg text-title-color font-normal leading-8">
               1. Контактные данные
             </h3>
@@ -48,11 +67,19 @@ const OrderForm = () => {
                   Фамилия
                 </label>
                 <input
+                  {...register("lastname", {
+                    required: "This field is required",
+                    min: 2,
+                    message: "Invalid lastname",
+                  })}
                   type="text"
-                  id="lastname"
-                  onChange={(e) => setLastName(e.target.value)}
                   className="mt-2 py-[10px] px-[18px] border-2 border-title-gray"
                 />
+                {errors.lastname && (
+                  <span className="text-red-600">
+                    {errors.lastname.message}
+                  </span>
+                )}
               </div>
               <div className="flex flex-col">
                 <label
@@ -63,16 +90,15 @@ const OrderForm = () => {
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  onChange={(e) => setName(e.target.value)}
+                  {...register("name", {
+                    required: "This field is required",
+                    min: 2,
+                    message: "Invalid name",
+                  })}
                   className="mt-2 py-[10px] px-[18px] border-2 border-title-gray"
                 />
-                {error.name.length > 1 ? (
-                  <p className="text-red-500 text-normal text-sm mt-2 leading-3">
-                    {error.name}
-                  </p>
-                ) : (
-                  <p></p>
+                {errors.name && (
+                  <span className="text-red-600">{errors.name.message}</span>
                 )}
               </div>
               <div className="flex flex-col">
@@ -84,10 +110,16 @@ const OrderForm = () => {
                 </label>
                 <input
                   type="tel"
-                  id="tel"
-                  onChange={(e) => setPhone(e.target.value)}
+                  {...register("phone", {
+                    required: "This field is required",
+                    min: 13,
+                    message: "Invalid phone",
+                  })}
                   className="mt-2 py-[10px] px-[18px] border-2 border-title-gray"
                 />
+                {errors.phone && (
+                  <span className="text-red-600">{errors.phone.message}</span>
+                )}
               </div>
               <div className="flex flex-col">
                 <label
@@ -96,12 +128,26 @@ const OrderForm = () => {
                 >
                   E-mail
                 </label>
-                <input
-                  type="email"
-                  id="e-mail"
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="mt-2 py-[10px] px-[18px] border-2 border-title-gray"
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Invalid email format",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <input
+                      className="mt-2 py-[10px] px-[18px] border-2 border-title-gray"
+                      {...field}
+                    />
+                  )}
                 />
+                {errors.email && (
+                  <p className="text-red-600">{errors.email.message}</p>
+                )}
               </div>
             </div>
             <h3 className="mt-6 text-lg text-title-color font-normal leading-8">
@@ -112,7 +158,12 @@ const OrderForm = () => {
                 <input
                   className="w-6 h-4"
                   type="radio"
-                  name="variant"
+                  name="variety"
+                  required
+                  value={"Сдек"}
+                  onChange={(e) =>
+                    setValue({ ...value, delivery: e.target.value })
+                  }
                   id="Сдек"
                 />
                 <label
@@ -126,7 +177,12 @@ const OrderForm = () => {
                 <input
                   className="w-6 h-4"
                   type="radio"
-                  name="variant"
+                  required
+                  name="variety"
+                  value={"Почта России"}
+                  onChange={(e) =>
+                    setValue({ ...value, delivery: e.target.value })
+                  }
                   id="Почта России"
                 />
                 <label
@@ -140,8 +196,13 @@ const OrderForm = () => {
                 <input
                   className="w-6 h-4"
                   type="radio"
-                  name="variant"
+                  name="variety"
+                  required
                   id="Деловые линии"
+                  value={"Деловые линии"}
+                  onChange={(e) =>
+                    setValue({ ...value, delivery: e.target.value })
+                  }
                 />
                 <label
                   className="text-lg font-normal leading-6 text-title-color"
@@ -159,8 +220,13 @@ const OrderForm = () => {
                 <input
                   className="w-6 h-4"
                   type="radio"
+                  required
                   name="variant"
+                  value={"Оплата наличными"}
                   id="Оплата при получении товара"
+                  onChange={(e) =>
+                    setValue({ ...value, payment: e.target.value })
+                  }
                 />
                 <label
                   className="text-lg font-normal leading-6 text-title-color"
@@ -174,7 +240,12 @@ const OrderForm = () => {
                   className="w-6 h-4"
                   type="radio"
                   name="variant"
+                  required
+                  value={"Банковская карта"}
                   id="Банковская карта"
+                  onChange={(e) =>
+                    setValue({ ...value, payment: e.target.value })
+                  }
                 />
                 <label
                   className="text-lg font-normal leading-6 text-title-color"
@@ -189,27 +260,42 @@ const OrderForm = () => {
             </h3>
             <textarea
               name=""
+              onChange={(e) => setValue({ ...value, message: e.target.value })}
               className="border-2 border-title-gray w-full resize-none h-[100px] mt-4 p-3"
               placeholder="Напишите комментарий"
             ></textarea>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-        <div className="w-[500px] h-full border-title-gray border-2 py-4 px-6">
-          <h2 className="text-[24px] font-semibold text-title-color">Итого</h2>
-          <div className="border-y-2 border-title-gray">
-            {cardItems.map((el) => (
-              <AddedProducts key={el.id} data={el} />
-            ))}
           </div>
-          <h3 className="text-sm text-title-color font-normal leading-[26px] ">
-            Итого:
-            <span className="text-xl font-bold leading-[30px] text-title-color">
-              {a.toLocaleString()} ₽
-            </span>
-          </h3>
+          <div className="w-[500px] h-full border-title-gray border-2 py-4 px-6">
+            <h2 className="text-[24px] font-semibold text-title-color">
+              Итого
+            </h2>
+            <div className="border-y-2 border-title-gray">
+              {cardItems.map((el) => (
+                <AddedProducts key={el.id} data={el} counter={false} />
+              ))}
+            </div>
+            <h3 className="text-sm text-title-color font-normal leading-[26px] ">
+              Итого:
+              <span className="text-xl font-bold leading-[30px] text-title-color">
+                {a.toLocaleString()} ₽
+              </span>
+            </h3>
+            <button
+              className="border-primary-color text-primary-color font-medium text-[17px] mt-3 border-[1px] rounded-lg py-[6px] px-4"
+              type="submit"
+            >
+              {loading ? (
+                <div role="status">
+                  <Icons.LoadingIcon />
+                  <span class="sr-only">Loading...</span>
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

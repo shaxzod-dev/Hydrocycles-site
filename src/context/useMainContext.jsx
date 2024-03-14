@@ -19,7 +19,6 @@ export function MainContextContainer({ children }) {
 
   const [state, dispatch] = useReducer(useReduce, startState);
   const addToCard = (data) => dispatch({ type: ADD_TO_CARD, payload: data });
-  console.log(state);
   const addOne = (id) => dispatch({ type: ADD_ONE, payload: id });
   const removeOne = (id) => dispatch({ type: REMOVE_ONE, payload: id });
   const removeFromCard = (id) =>

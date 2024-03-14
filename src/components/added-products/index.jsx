@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Icons } from "../../assets/icons";
 import { MainContext } from "../../context/useMainContext";
 
-const AddedProducts = ({ data }) => {
+const AddedProducts = ({ data, counter }) => {
   const { removeOne, addOne, removeFromCard } = useContext(MainContext);
   return (
     <div className="relative flex gap-x-4 bg-white p-2 mt-5">
@@ -26,24 +26,28 @@ const AddedProducts = ({ data }) => {
             “Приложение к технологиям Golden Service”
           </a>
         </h2>
-        <div className="flex mt-8 gap-x-3">
-          <button
-            onClick={() => removeOne(data.id)}
-            disabled={data.quantity == 1}
-            className="disabled:text-gray-300 w-3 font-semibold text-sm  leading-6 text-title-color"
-          >
-            -
-          </button>
-          <span className="py-1 px-5 border-2 border-title-gray text-sm font-medium leading-6 text-title-color">
-            {data.quantity}
-          </span>
-          <button
-            onClick={() => addOne(data.id)}
-            className="w-3 text-sm font-semibold leading-6 text-title-color"
-          >
-            +
-          </button>
-        </div>
+        {counter ? (
+          <div className="flex mt-8 gap-x-3">
+            <button
+              onClick={() => removeOne(data.id)}
+              disabled={data.quantity == 1}
+              className="disabled:text-gray-300 w-3 font-semibold text-sm  leading-6 text-title-color"
+            >
+              -
+            </button>
+            <span className="py-1 px-5 border-2 border-title-gray text-sm font-medium leading-6 text-title-color">
+              {data.quantity}
+            </span>
+            <button
+              onClick={() => addOne(data.id)}
+              className="w-3 text-sm font-semibold leading-6 text-title-color"
+            >
+              +
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <button
         className="absolute right-5 top-6"

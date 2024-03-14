@@ -9,13 +9,13 @@ import {
 import { Icons } from "../../../assets/icons";
 import { MainContext } from "../../../context/useMainContext";
 import AddedProducts from "../../added-products";
+import { Link } from "react-router-dom";
 function ShopModal({ open, handleOpen }) {
   const { cardItems } = useContext(MainContext);
   let a = 0;
   for (const key of cardItems) {
     a += key.price * key.quantity;
   }
-  console.log(a.toLocaleString());
   return (
     <>
       <Dialog
@@ -32,7 +32,7 @@ function ShopModal({ open, handleOpen }) {
         <DialogBody className="h-[500px] overflow-y-auto pb-32 bg-title-gray flex flex-col gap-4">
           {cardItems.length
             ? cardItems.map((el) => {
-                return <AddedProducts key={el.id} data={el} />;
+                return <AddedProducts key={el.id} data={el} counter={true} />;
               })
             : "There is nothing in the Shop Box"}
         </DialogBody>
@@ -45,12 +45,12 @@ function ShopModal({ open, handleOpen }) {
                   {a.toLocaleString()} ₽
                 </span>
               </h3>
-              <Button
-                variant="filled"
-                className="w-[220px] rounded-none py-2 bg-primary-color text-xs font-medium leading-[26px] text-white"
+              <Link
+                to={"/orders"}
+                className="px-4 text-sm w-[220px] rounded-none py-[10px] bg-primary-color font-medium leading-[26px] text-white"
               >
                 Оформить заказ
-              </Button>
+              </Link>
             </div>
             <Button
               variant="filled"

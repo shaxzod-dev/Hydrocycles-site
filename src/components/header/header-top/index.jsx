@@ -10,7 +10,6 @@ const HeaderTop = () => {
     [personModal, setPersonModal] = useState(false),
     [shopModal, setShopModal] = useState(false);
   const { likeItems, cardItems } = useContext(MainContext);
-  console.log(cardItems.length, "my length");
   function handleLike() {
     setLikeModal(!likeModal);
   }
